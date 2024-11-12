@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import styled,{ThemeProvider} from "styled-components";
+import {darkTheme} from "./utils/Themes";
+import Navbar from "./components/Navbar";
+import {BrowserRouter} from "react-router-dom"
+import HeroSection from "./components/sections/HeroSection";
+import Skills from "./components/sections/Skills"
+import Projects from "./components/sections/Projects" 
+import Education from "./components/sections/Education" 
+import Footer from "./components/sections/Footer" 
+
+const Body= styled.div`
+  background-color: ${({theme}) => theme.bg};
+  color: ${({theme}) => theme.text_primary};
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+`
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <ThemeProvider theme={darkTheme}>
+    <BrowserRouter>
+      <Navbar/>
+        <Body>
+          <HeroSection/>
+          <Skills/>
+          <Projects/>
+          <Education/>
+          <Footer/>
+        </Body>
+    </BrowserRouter>
+  </ThemeProvider>;
 }
 
 export default App;
